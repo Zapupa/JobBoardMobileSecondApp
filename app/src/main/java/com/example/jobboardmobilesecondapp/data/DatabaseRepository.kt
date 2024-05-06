@@ -1,17 +1,17 @@
 package com.example.jobboardmobilesecondapp.data
 
 import androidx.lifecycle.LiveData
-import com.example.jobboardmobilesecondapp.data.remote.Vacancy
+import com.example.jobboardmobilesecondapp.data.remote.Pizzamon
 
 interface DatabaseRepository {
 
-    val readAll: LiveData<List<Vacancy>>
+    val readAll: LiveData<List<Pizzamon>>
 
-    suspend fun create (vacancy: Vacancy, onSuccess: () -> Unit)
+    suspend fun create (pizzamon: Pizzamon, onSuccess: () -> Unit)
 
-    suspend fun update(vacancy: Vacancy, onSuccess: () -> Unit)
+    suspend fun update(pizzamon: Pizzamon, onSuccess: () -> Unit)
 
-    suspend fun delete(vacancy: Vacancy, onSuccess: () -> Unit)
+    suspend fun delete(pizzamon: Pizzamon, onSuccess: () -> Unit)
 
     fun singOut() { }
 

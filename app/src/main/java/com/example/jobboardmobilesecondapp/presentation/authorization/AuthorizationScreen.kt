@@ -2,6 +2,7 @@ package com.example.jobboardmobilesecondapp.presentation.authorization
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -49,7 +50,7 @@ fun AuthorizationScreen(navController: NavHostController) {
 
     Box(modifier = Modifier
         .fillMaxSize()
-        .background(color = Color.Yellow)
+        .background(color = colorResource(id = R.color.bege))
         .padding(16.dp),
         contentAlignment = Alignment.Center
     ) {
@@ -57,28 +58,20 @@ fun AuthorizationScreen(navController: NavHostController) {
 
         Column(
             modifier = Modifier.fillMaxSize(),
-            horizontalAlignment = Alignment.CenterHorizontally
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Center
         ) {
-            Card(
-                modifier = Modifier.padding(top = 80.dp),
-                shape = RoundedCornerShape(20.dp),
-                border = BorderStroke(2.dp, Color.Black),
-                colors = CardDefaults.cardColors(Color.Transparent)
-            ) {
-                Text(text ="jobs ready to be scouted",
-                    modifier = Modifier.padding(vertical = 8.dp, horizontal = 30.dp))
-            }
 
-            Text(text = "Amazing people know amazing people",
+            Text(text = "Pizzamon",
                 fontWeight = FontWeight.Bold,
-                fontSize = 40.sp,
+                fontSize = 60.sp,
                 textAlign = TextAlign.Center,
                 lineHeight = 50.sp
             )
 
             Spacer(modifier = Modifier.height(8.dp))
-            Text(text = "Get rewarded in cash for refrring  your friends and acquaintancces",
-                fontSize = 15.sp,
+            Text(text = "Create ypur unique Pizzamon and eat 'em all",
+                fontSize = 20.sp,
                 textAlign = TextAlign.Center,
                 lineHeight = 30.sp
             )
@@ -89,7 +82,7 @@ fun AuthorizationScreen(navController: NavHostController) {
                 },
                 colors = ButtonDefaults.buttonColors(containerColor = Color.Black)
             ) {
-                Text(text = "Start referring now")
+                Text(text = "pizza time")
 
                 if(shouldShowAuthorizationWindow.value) {
                     AlertDialog(
@@ -125,7 +118,7 @@ fun AuthorizationScreen(navController: NavHostController) {
                                     PASSWORD = password
                                     coroutineScope.launch {
                                         authorizationViewModel.initDatabase("Firebase") {
-                                            navController.navigate(route = "ListVacancyScreen")
+                                            navController.navigate(route = "ListPizzamonScreen")
                                         }
                                         shouldShowAuthorizationWindow.value = false
                                     }

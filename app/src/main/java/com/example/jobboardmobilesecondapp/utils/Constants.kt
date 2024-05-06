@@ -7,11 +7,14 @@ lateinit var PASSWORD: String
 
 object Constants {
     object Keys {
-        const val TITLE = "title"
+        const val NAME = "name"
+        const val TYPE1 = "type1"
+        const val TYPE2 = "type2"
         const val DESCRIPTION = "description"
-        const val LOCATION = "location"
-        const val SALARY = "salary"
-        const val WORKBASE = "workBase"
-        const val TIMESTAMP = "timestamp"
+        const val HEALTH = "health"
+        const val ATTACK = "attack"
+        const val DEFENCE = "defence"
+        const val SPEED = "speed"
     }
 }
+
