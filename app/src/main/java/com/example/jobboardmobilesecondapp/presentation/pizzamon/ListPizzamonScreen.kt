@@ -1,7 +1,8 @@
-package com.example.jobboardmobilesecondapp.presentation.vacancy
+package com.example.jobboardmobilesecondapp.presentation.pizzamon
 
 import android.annotation.SuppressLint
 import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -26,6 +27,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -33,21 +35,23 @@ import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.navigation.NavHostController
-import com.example.jobboardmobilesecondapp.data.remote.Vacancy
+import com.example.jobboardmobilesecondapp.R
+import com.example.jobboardmobilesecondapp.data.remote.Pizzamon
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun ListVacancyScreen(navController: NavHostController){
-    val listVacancyViewModel : VacancyViewModel = viewModel()
+fun ListPizzamonScreen(navController: NavHostController){
+    val listVacancyViewModel : PizzamonViewModel = viewModel()
 
-    val vacancies = listVacancyViewModel.repositoryFireBase.readAll.observeAsState(listOf()).value
+    val pizzamons = listVacancyViewModel.repositoryFireBase.readAll.observeAsState(listOf()).value
 
     Scaffold(
+        modifier = Modifier.background(color = colorResource(id = R.color.bege)),
         floatingActionButton = {
             FloatingActionButton(
                 onClick = {
-                    navController.navigate(route = "AddVacancyScreen")
+                    navController.navigate(route = "AddPizzamonScreen")
                 },
                 containerColor = Color.Yellow
             ) {
@@ -60,15 +64,15 @@ fun ListVacancyScreen(navController: NavHostController){
         }
     ) {
         LazyColumn(){
-            items(vacancies) {vacancy ->
-                VacancyItem(vacancy = vacancy, navController = navController)
+            items(pizzamons) {pizzamon ->
+                PizzamonItem(pizzamon = pizzamon, navController = navController)
             }
         }
     }
 }
 
 @Composable
-fun VacancyItem(vacancy: Vacancy, navController: NavController) {
+fun PizzamonItem(pizzamon: Pizzamon, navController: NavController) {
 
     Card(
         elevation = CardDefaults.elevatedCardElevation(4.dp),
@@ -76,9 +80,9 @@ fun VacancyItem(vacancy: Vacancy, navController: NavController) {
             .padding(8.dp)
             .fillMaxWidth()
             .clickable {
-                navController.navigate("vacancy" + "/${vacancy.firebaseId}")
+                navController.navigate("pizzamon" + "/${pizzamon.id}")
             },
-        colors = CardDefaults.cardColors(Color.White)
+        colors = CardDefaults.cardColors(Color.White),
     ) {
         Column(
             modifier = Modifier
@@ -90,34 +94,30 @@ fun VacancyItem(vacancy: Vacancy, navController: NavController) {
                 modifier = Modifier.fillMaxWidth()
             ) {
                 Text(
-                    text = vacancy.title,
+                    text = pizzamon.name,
                     fontWeight = FontWeight.Bold,
                     fontSize = 20.sp,
                     modifier = Modifier
                         .padding(start = 8.dp)
                         .weight(0.75f)
                 )
-                Text(
-                    modifier = Modifier.weight(0.25f),
-                    text = vacancy.timestamp.toString(),
-                    fontSize = 20.sp
-                )
             }
-            Text(
-                text = vacancy.location,
-                modifier = Modifier.padding(start = 8.dp),
-                fontSize = 20.sp
-            )
             Spacer(modifier = Modifier.height(12.dp))
 
             Text(
-                text = vacancy.description,
+                text = pizzamon.description,
                 modifier = Modifier.padding(start = 8.dp),
                 fontSize = 20.sp,
                 textAlign = TextAlign.Start
             )
 
             Spacer(modifier = Modifier.height(12.dp))
+            Text(
+                text = "Types:",
+                modifier = Modifier.padding(start = 8.dp),
+                fontSize = 20.sp
+            )
+            Spacer(modifier = Modifier.height(8.dp))
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.spacedBy(16.dp)
@@ -127,7 +127,7 @@ fun VacancyItem(vacancy: Vacancy, navController: NavController) {
                     border = BorderStroke(2.dp, Color.Black),
                     colors = CardDefaults.cardColors(Color.Transparent)
                 ) {
-                    Text(text = "$" + vacancy.salary,
+                    Text(text = pizzamon.type1,
                         modifier = Modifier.padding(vertical = 8.dp, horizontal = 30.dp))
                 }
 
@@ -136,10 +136,75 @@ fun VacancyItem(vacancy: Vacancy, navController: NavController) {
                     border = BorderStroke(2.dp, Color.Black),
                     colors = CardDefaults.cardColors(Color.Transparent)
                 ) {
-                    Text(text = vacancy.workBase,
+                    Text(text = pizzamon.type2,
                         modifier = Modifier.padding(vertical = 8.dp, horizontal = 30.dp)
                     )
                 }
+
+            }
+            Spacer(modifier = Modifier.height(12.dp))
+
+
+            Text(
+                text = "Stats:",
+                modifier = Modifier.padding(start = 8.dp),
+                fontSize = 20.sp
+            )
+            Spacer(modifier = Modifier.height(8.dp))
+
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.spacedBy(16.dp)
+            ) {
+                Text(
+                    text = "HEALTH",
+                    modifier = Modifier.padding(start = 8.dp),
+                    fontSize = 20.sp
+                )
+                Text(
+                    text = pizzamon.health,
+                    modifier = Modifier.padding(start = 8.dp),
+                    fontSize = 20.sp
+                )
+                Spacer(modifier = Modifier.height(4.dp))
+                Text(
+                    text = "ATTACK",
+                    modifier = Modifier.padding(start = 8.dp),
+                    fontSize = 20.sp
+                )
+                Text(
+                    text = pizzamon.attack,
+                    modifier = Modifier.padding(start = 8.dp),
+                    fontSize = 20.sp
+                )
+                Spacer(modifier = Modifier.height(4.dp))
+            }
+
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.spacedBy(16.dp)
+            ) {
+                Text(
+                    text = "DEFENCE",
+                    modifier = Modifier.padding(start = 8.dp),
+                    fontSize = 20.sp
+                )
+                Text(
+                    text = pizzamon.defence,
+                    modifier = Modifier.padding(start = 8.dp),
+                    fontSize = 20.sp
+                )
+                Spacer(modifier = Modifier.height(4.dp))
+                Text(
+                    text = "SPEED",
+                    modifier = Modifier.padding(start = 8.dp),
+                    fontSize = 20.sp
+                )
+                Text(
+                    text = pizzamon.speed,
+                    modifier = Modifier.padding(start = 8.dp),
+                    fontSize = 20.sp
+                )
             }
         }
     }

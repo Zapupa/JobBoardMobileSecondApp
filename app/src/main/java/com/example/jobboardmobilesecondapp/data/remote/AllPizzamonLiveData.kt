@@ -8,7 +8,7 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.database
 
-class AllVacancyLiveData : LiveData<List<Vacancy>>() {
+class AllPizzamonLiveData : LiveData<List<Pizzamon>>() {
 
     private val fAuth = FirebaseAuth.getInstance()
     private val database = Firebase.database.reference
@@ -16,11 +16,11 @@ class AllVacancyLiveData : LiveData<List<Vacancy>>() {
 
     private val listener = object : ValueEventListener{
         override fun onDataChange(snapshot: DataSnapshot) {
-            val vacancies = mutableListOf<Vacancy>()
+            val pizzamons = mutableListOf<Pizzamon>()
             snapshot.children.map {
-                vacancies.add(it.getValue(Vacancy::class.java) ?: Vacancy())
+                pizzamons.add(it.getValue(Pizzamon::class.java) ?: Pizzamon())
             }
-            value = vacancies
+            value = pizzamons
         }
 
         override fun onCancelled(error: DatabaseError) {

@@ -19,31 +19,33 @@ class AppFirebaseRepository() : DatabaseRepository {
 
 
 
-    override val readAll: LiveData<List<Vacancy>> = AllVacancyLiveData()
+    override val readAll: LiveData<List<Pizzamon>> = AllPizzamonLiveData()
 
-    override suspend fun create(vacancy: Vacancy, onSuccess: () -> Unit) {
-        val vacancyId = database.push().key.toString()
-        val mapVacancies = hashMapOf<String,Any>()
+    override suspend fun create(pizzamon: Pizzamon, onSuccess: () -> Unit) {
+        val pizzamonId = database.push().key.toString()
+        val mapPizzamons = hashMapOf<String,Any>()
 
-        mapVacancies[FIREBASE_ID] = vacancyId
-        mapVacancies[Constants.Keys.TITLE] = vacancy.title
-        mapVacancies[Constants.Keys.DESCRIPTION] = vacancy.description
-        mapVacancies[Constants.Keys.LOCATION] = vacancy.location
-        mapVacancies[Constants.Keys.WORKBASE] = vacancy.workBase
-        mapVacancies[Constants.Keys.SALARY] = vacancy.salary
-        mapVacancies[Constants.Keys.TIMESTAMP] = vacancy.timestamp
+        mapPizzamons[FIREBASE_ID] = pizzamonId
+        mapPizzamons[Constants.Keys.NAME] = pizzamon.name
+        mapPizzamons[Constants.Keys.TYPE1] = pizzamon.type1
+        mapPizzamons[Constants.Keys.TYPE2] = pizzamon.type2
+        mapPizzamons[Constants.Keys.DESCRIPTION] = pizzamon.description
+        mapPizzamons[Constants.Keys.HEALTH] = pizzamon.health
+        mapPizzamons[Constants.Keys.ATTACK] = pizzamon.attack
+        mapPizzamons[Constants.Keys.DEFENCE] = pizzamon.defence
+        mapPizzamons[Constants.Keys.SPEED] = pizzamon.speed
 
-        database.child(vacancyId)
-            .updateChildren(mapVacancies)
+        database.child(pizzamonId)
+            .updateChildren(mapPizzamons)
             .addOnSuccessListener { onSuccess() }
             .addOnFailureListener { Log.d("checkFail","Failed to create vacancy") }
     }
 
-    override suspend fun update(vacancy: Vacancy, onSuccess: () -> Unit) {
+    override suspend fun update(pizzamon: Pizzamon, onSuccess: () -> Unit) {
         TODO("Not yet implemented")
     }
 
-    override suspend fun delete(vacancy: Vacancy, onSuccess: () -> Unit) {
+    override suspend fun delete(pizzamon: Pizzamon, onSuccess: () -> Unit) {
         TODO("Not yet implemented")
     }
 

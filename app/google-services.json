@@ -1,33 +1,13 @@
 {
   "project_info": {
-    "project_number": "670546460206",
-    "firebase_url": "https://jobboardfirebase-default-rtdb.firebaseio.com",
-    "project_id": "jobboardfirebase",
-    "storage_bucket": "jobboardfirebase.appspot.com"
+    "project_number": "837504661710",
+    "project_id": "pizzamen-e7af9",
+    "storage_bucket": "pizzamen-e7af9.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:670546460206:android:72ac8ca19d72eb89f029bf",
-        "android_client_info": {
-          "package_name": "com.example.jobboardmobileapp"
-        }
-      },
-      "oauth_client": [],
-      "api_key": [
-        {
-          "current_key": "AIzaSyCJqUd_T9vhKd2h3ozljpnYR20OF4yTuF0"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": []
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:670546460206:android:0d0f12dae001768ff029bf",
+        "mobilesdk_app_id": "1:837504661710:android:213662e7db61f8df81f89f",
         "android_client_info": {
           "package_name": "com.example.jobboardmobilesecondapp"
         }
@@ -35,7 +15,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyCJqUd_T9vhKd2h3ozljpnYR20OF4yTuF0"
+          "current_key": "AIzaSyDyGla-RVuLW5frGbWZetc9EGCIkyGBmUY"
         }
       ],
       "services": {

@@ -1,19 +1,19 @@
-package com.example.jobboardmobilesecondapp.presentation.vacancy
+package com.example.jobboardmobilesecondapp.presentation.pizzamon
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.jobboardmobilesecondapp.data.DatabaseRepository
 import com.example.jobboardmobilesecondapp.data.remote.AppFirebaseRepository
-import com.example.jobboardmobilesecondapp.data.remote.Vacancy
+import com.example.jobboardmobilesecondapp.data.remote.Pizzamon
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class VacancyViewModel: ViewModel() {
+class PizzamonViewModel: ViewModel() {
     val repositoryFireBase: DatabaseRepository = AppFirebaseRepository()
 
-    fun addVacancy(vacancy: Vacancy, onSuccess: () -> Unit){
+    fun addPizzamon(pizzamon: Pizzamon, onSuccess: () -> Unit){
         viewModelScope.launch(Dispatchers.IO){
-            repositoryFireBase.create(vacancy = vacancy){
+            repositoryFireBase.create(pizzamon = pizzamon){
                 viewModelScope.launch(Dispatchers.Main){
                     onSuccess()
                 }

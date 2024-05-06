@@ -6,16 +6,14 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.jobboardmobilesecondapp.presentation.authorization.AuthorizationScreen
-import com.example.jobboardmobilesecondapp.presentation.vacancy.AddVacancyScreen
-import com.example.jobboardmobilesecondapp.presentation.vacancy.ListVacancyScreen
+import com.example.jobboardmobilesecondapp.presentation.pizzamon.AddPizzamonScreen
+import com.example.jobboardmobilesecondapp.presentation.pizzamon.ListPizzamonScreen
 import com.example.jobboardmobilesecondapp.ui.theme.JobBoardMobileSecondAppTheme
 
 class MainActivity : ComponentActivity() {
@@ -39,17 +37,17 @@ class MainActivity : ComponentActivity() {
 private fun JobBoardMobileApp() {
     val navController = rememberNavController()
 
-    NavHost(navController = navController, startDestination = "AuthorizationScreen" ) {
+    NavHost(navController = navController, startDestination = "ListPizzamonScreen" ) {
         composable(route = "AuthorizationScreen") {
             AuthorizationScreen(navController = navController)
         }
 
-        composable(route = "ListVacancyScreen") {
-           ListVacancyScreen(navController = navController)
+        composable(route = "ListPizzamonScreen") {
+            ListPizzamonScreen(navController = navController)
         }
 
-        composable(route = "AddVacancyScreen"){
-            AddVacancyScreen(navController = navController)
+        composable(route = "AddPizzamonScreen"){
+            AddPizzamonScreen(navController = navController)
         }
     }
 }
